@@ -37,8 +37,3 @@ After training the logistic regression model and evaluating it for fairness, the
     The model predicted a higher likelihood of income > $50,000 for males compared to females by an average margin of 0.15, indicating gender bias.
 
 These results highlight that while the model performs well in terms of accuracy, it demonstrates unequal treatment across demographic groups, specifically gender, which calls for the application of bias mitigation techniques.
-
-
-## Acknowledgements:
-- The **Adult Income Dataset** is sourced from the **UCI Machine Learning Repository**.
-- Fairness evaluation and mitigation techniques are powered by **AIF360**.
