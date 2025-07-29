@@ -1,27 +1,44 @@
-# Named Entity Recognition with BERT (Fine-Tuning)
+# Advertising Sales Prediction Model
 
-This project is a practical implementation of **Named Entity Recognition (NER)** using a fine-tuned BERT model. I trained the model to detect entities such as people, organizations, locations, and miscellaneous names using the **CoNLL-2003** dataset.
+## Overview
+This project aims to build a regression model to predict sales based on advertising data from 3 different aspects: TV, newspaper, and radio. The dataset first cleaned, analyzed, and preprocessed, then a Linear Regression Model was trained on it.
 
----
+## Team Members
+- Ughur Babayev (Preprocessor)
+- Mehdi Shukurtu (Analyst)
+- Helia Abidini (Modeler)
+- Shahin Safarti (Reporter)
 
-## What I Did
+## Dataset
+- **Source**: https://www.statlearning.com/resources-first-edition
+- **Size**: 200 records
+- **Features**: 3 (TV, radio, newspaper)
+- **Target**: Sales
 
-### 1. Loaded the Dataset
-I used the Hugging Face `datasets` library to load the `conll2003` dataset, which contains token-level NER annotations.
+## Data Analysis
+- **Feature Distributions**: TV and radio spending are roughly normally distributed; newspaper spending is right-skewed.
+- **Correlation with Sales**: TV (0.78), Radio (0.58), Newspaper (0.23).
 
-### 2. Tokenized Input and Aligned Labels
-I used the BERT tokenizer (`bert-base-uncased`) to tokenize the input text. Since BERT splits words into subwords, I aligned the original NER labels to match the tokenized format and ignored special/padding tokens using `-100`.
+## Preprocessing
+- **Outlier Detection**: Outliers in newspaper capped using the IQR method.
+- **Scaling**: Features standardized with StandardScaler.
+- **Train-Test Split**: 80% training, 20% testing (random_state=42).
 
-### 3. Prepared the Model
-Then loaded a pre-trained BERT model for token classification and configured it with the correct number of labels. I also set up mappings between label IDs and label names.
+## Feature Impact
+- TV: 3.839619
+- Radio: 2.802285
+- Newspaper: 0.057980
 
-### 4. Fine-Tuned the Model
-Using Hugging Face’s `Trainer` and `TrainingArguments`, I fine-tuned the model on the training set for 3 epochs with evaluation and saving done at each epoch.
+## Modeling
+- **Algorithm**: Linear Regression
+- **Evaluation Metrics**:
+  - RMSE: 1.781
+  - MSE: 3.171
+  - R²: 0.901 (closer to 1 is better)
 
-### 5. Evaluated the Model
-I evaluated the model using the `seqeval` metric to compute **precision**, **recall**, **F1 score**, and **accuracy** on the validation set.
+## Key Findings
+- TV is the strongest predictor of sales (coefficient = 3.83).
+- Newspaper has the least impact (coefficient = 0.058).
 
-### 6. Ran Inference
-Finally, I used the trained model in a `pipeline` to perform NER on a custom input sentence:  
-```text
-"Bill Gates is the Founder of Microsoft"
+## Visualizations
+- Available in report file.
