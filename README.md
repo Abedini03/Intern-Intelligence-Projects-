@@ -6,7 +6,7 @@ This project aims to build a regression model to predict sales based on advertis
 ## Team Members
 - Ughur Babayev (Preprocessor)
 - Mehdi Shukurtu (Analyst)
-- Helia Abidini (Modeler)
+- Helia Abedini (Modeler)
 - Shahin Safarti (Reporter)
 
 ## Dataset
